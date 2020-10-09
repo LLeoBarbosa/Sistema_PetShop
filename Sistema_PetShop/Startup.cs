@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sistema_PetShop.Context;
 
 namespace Sistema_PetShop
 {
@@ -33,6 +35,10 @@ namespace Sistema_PetShop
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //registrando o contexto como um serviço para a aplicação
+            services.AddDbContext<AplicacaoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionSuperPetShop")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
