@@ -12,7 +12,7 @@ namespace Sistema_PetShop.Context
 
         public AplicacaoDbContext(DbContextOptions<AplicacaoDbContext> options) : base(options) { }
 
-        public DbSet<Produtos> Produtos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
 
     }
