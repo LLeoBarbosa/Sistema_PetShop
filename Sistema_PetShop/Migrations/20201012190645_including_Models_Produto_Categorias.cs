@@ -14,8 +14,8 @@ namespace Sistema_PetShop.Migrations
                 {
                     CategoriaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(nullable: true),
-                    Descricao = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(maxLength: 100, nullable: true),
+                    Descricao = table.Column<string>(maxLength: 200, nullable: true),
                     ImagemCategoria = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -29,13 +29,13 @@ namespace Sistema_PetShop.Migrations
                 {
                     ProdutoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DescricaoCurta = table.Column<string>(nullable: true),
-                    DescricaoDetalhada = table.Column<string>(nullable: true),
+                    DescricaoCurta = table.Column<string>(maxLength: 50, nullable: true),
+                    DescricaoDetalhada = table.Column<string>(maxLength: 200, nullable: true),
                     Peso = table.Column<decimal>(nullable: false),
-                    Fabricante = table.Column<string>(nullable: true),
+                    Fabricante = table.Column<string>(maxLength: 50, nullable: true),
                     Validade = table.Column<DateTime>(nullable: false),
                     Preco = table.Column<decimal>(nullable: false),
-                    ImagemProduto = table.Column<string>(nullable: true),
+                    ImagemProduto = table.Column<string>(maxLength: 200, nullable: true),
                     CategoriaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

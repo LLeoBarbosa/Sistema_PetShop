@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sistema_PetShop.Context;
+using Sistema_PetShop.Repositories.Implementation;
+using Sistema_PetShop.Repositories.Interfaces;
 
 namespace Sistema_PetShop
 {
@@ -36,8 +38,22 @@ namespace Sistema_PetShop
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //registrando o contexto como um serviço para a aplicação
+            //**********************************************************************************************************************************************************
+            //**********************************************************************************************************************************************************
+
+            //registrando o contexto como um serviço para a aplicação - quando a aplicação é executada, um serviço e criado para o contexto (sessão com o banco de dados)
             services.AddDbContext<AplicacaoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionSuperPetShop")));
+
+            //**********************************************************************************************************************************************************
+            //**********************************************************************************************************************************************************
+
+            //Registrando um serviço para as interfaces, fornecendo ao controlador uma instancia da classe de implementação da interface
+            //Transiente - o serviço é criado a cada solicitação.
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
+
+            //**********************************************************************************************************************************************************
+            //**********************************************************************************************************************************************************
 
         }
 

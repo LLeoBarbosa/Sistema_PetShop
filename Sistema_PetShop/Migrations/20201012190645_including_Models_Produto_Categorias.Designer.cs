@@ -10,7 +10,7 @@ using Sistema_PetShop.Context;
 namespace Sistema_PetShop.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    [Migration("20201010153528_including_Models_Produto_Categorias")]
+    [Migration("20201012190645_including_Models_Produto_Categorias")]
     partial class including_Models_Produto_Categorias
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,13 @@ namespace Sistema_PetShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(200);
 
                     b.Property<string>("ImagemCategoria");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .HasMaxLength(100);
 
                     b.HasKey("CategoriaId");
 
@@ -46,13 +48,17 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<int>("CategoriaId");
 
-                    b.Property<string>("DescricaoCurta");
+                    b.Property<string>("DescricaoCurta")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("DescricaoDetalhada");
+                    b.Property<string>("DescricaoDetalhada")
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Fabricante");
+                    b.Property<string>("Fabricante")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("ImagemProduto");
+                    b.Property<string>("ImagemProduto")
+                        .HasMaxLength(200);
 
                     b.Property<decimal>("Peso");
 

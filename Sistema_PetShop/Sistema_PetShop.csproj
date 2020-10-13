@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20201010152850_including_Models_Produto_Categorias.Designer.cs" />
     <Compile Remove="Migrations\20201010153254_including_Models_Produto_Categorias.cs" />
     <Compile Remove="Migrations\20201010153254_including_Models_Produto_Categorias.Designer.cs" />
+    <Compile Remove="Migrations\20201010153528_including_Models_Produto_Categorias.cs" />
+    <Compile Remove="Migrations\20201010153528_including_Models_Produto_Categorias.Designer.cs" />
   </ItemGroup>
 
 
@@ -24,6 +26,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>
