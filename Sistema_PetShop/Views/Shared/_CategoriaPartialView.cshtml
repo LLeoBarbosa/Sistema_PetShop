@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Categoria
+
+<div class="col">
+
+    <div class="img-thumbnail mb-2">
+
+        <img height="300" src="@Model.ImagemCategoria" class="img-rounded" />
+
+        <div class="caption">
+
+            <p>
+
+                <a asp-controller="Produto" asp-action="Index" asp-route-categoriaId ="@Model.CategoriaId" class="btn btn-info text-white">@Model.Nome</a>
+
+            </p>
+
+            @*<h3 class="pull-righ btn-info">@Model.Nome</h3>*@
+
+            <p>@Model.Descricao</p>
+
+        </div>
+
+    </div>
+
+</div>

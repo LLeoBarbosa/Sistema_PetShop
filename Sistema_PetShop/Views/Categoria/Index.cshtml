@@ -1,0 +1,24 @@
+﻿@*@model IEnumerable<Categoria>*@
+@model CategoriaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<div><h2>@Model.CategoriaAtual</h2></div>
+
+<div class="row">
+
+    @{
+
+        foreach (var categoria in Model.Categoria)
+        {
+
+            <partial name="_CategoriaPartialView" for="@categoria" />
+
+        }
+
+    }
+
+</div>
