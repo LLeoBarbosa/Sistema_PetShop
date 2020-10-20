@@ -14,6 +14,7 @@ namespace Sistema_PetShop.Context
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<ItensCarrinhoCompra> ItensCarrinhoCompras { get; set; }
 
     }
 }

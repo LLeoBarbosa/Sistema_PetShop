@@ -1,0 +1,99 @@
+﻿
+@model CarrinhoCompraViewModel
+
+
+@{
+
+
+    if (Model.carrinhoCompra.ItensCarrinhoCompras.Count() == 0)
+    {
+        <p>Não existem itens no carrinho.</p>
+    }
+    else
+    {
+
+        <div class="row checkoutForm">
+
+            <h3><img src="~/images/Full-Cart-icon.png" alt="Full" class="mr-2" />Itens no carrinho:</h3>
+
+            <table class="table table-bordered table-striped">
+
+                <thead>
+
+                    <tr>
+                        <th>Quantidade</th>
+                        <th>Produto</th>
+                        <th class="text-right">Preço</th>
+                        <th class="text-right">SubTotal</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model.carrinhoCompra.ItensCarrinhoCompras)
+                    {
+
+                        <tr>
+                            <td class="text-center">@item.Quantidade</td>
+                            <td class="text-left">@item.Produto.DescricaoCurta</td>
+                            <td class="text-right">@item.Produto.Preco.ToString()</td>
+                            <td class="text-right">@((item.Quantidade * item.Produto.Preco).ToString("c")) </td>
+
+                            <td class="text-center"> <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinho" asp-route-ProdutoId="@item.Produto.ProdutoId"><img src="~/images/delete.png" /></a></td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr>
+
+                        <td colspan="3" class="text-right">Total</td>
+
+                        <td class="text-right">
+                            @Model.TotalCarrinho.ToString("c")
+                        </td>
+
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+            <div class="text-right">
+
+                <div class="btn-group">
+
+                    <a class="btn btn-success" asp-controller="" asp-action="">Encerrar Pedido</a>
+
+                    @*<a class="btn-group">
+
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Adicionar Mais Produtos<span class="caret"></span>
+                            </a>
+
+                            @await Component.InvokeAsync("MenuDeCategoria")
+
+                        </a>*@
+                        
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    }
+
+}
+
+
+
+
+

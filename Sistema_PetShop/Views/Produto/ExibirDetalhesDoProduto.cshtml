@@ -1,0 +1,44 @@
+﻿
+@model Produto
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="card">
+
+            <div class="text-center view overlay hm-white-slight">
+
+                <img src="@Model.ImagemProduto" class="img-fluid" alt="" />
+
+                <a href="">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+
+            </div>
+
+            <div class="card-block p-2">
+
+                <h2 class="card-title">@Model.DescricaoCurta</h2>
+
+                <p class="card-text"><h3>@Model.DescricaoDetalhada</h3></p>
+
+                <p class="btn btn-group pull-right">
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-success">Ver todos os Produtos</a>
+
+                    <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinho" asp-route-produtoId="@Model.ProdutoId">
+
+                        @*Add @Model.DescricaoCurta to Cart*@
+                        Adicionar ao Carrinho
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

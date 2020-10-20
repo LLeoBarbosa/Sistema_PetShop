@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sistema_PetShop.ViewModels
 {
-    public class CategoriaViewModel
+    public class ProdutoViewModel
     {
-        public IEnumerable<Categoria> Categoria { get; set; }
-
-        public string CategoriaAtual { get; set; }
-
+        public IEnumerable<Produto> Produtos { get; set; }
+        
     }
 }

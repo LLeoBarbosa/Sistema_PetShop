@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<Categoria>
+
+<li class="dropdown pt-2 mr-1 ml-2">
+
+    <a asp-controller="" asp-action="" class="dropdown-toggle text-white" data-toggle="dropdown">Produtos por categoria<b class="caret"></b></a>
+
+    <ul class="dropdown-menu">
+
+
+        @{
+            foreach (var categoria in Model)
+            {
+                <li>
+                    <a class="text-black-50" asp-controller="Produto" asp-action="Index" asp-route-categoriaId="@categoria.CategoriaId">@categoria.Nome</a>
+                </li>
+            }
+        }
+
+        <li class="divider text-black-50"></li>
+
+        <li>
+            <a class="text-black-50" asp-controller="Produto" asp-action="ObterTodosProdutos" asp-route-categoria="">Todas os Produtos</a>
+        </li>
+
+    </ul>
+
+</li>

@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<Produto>
+@model ProdutoViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -12,50 +12,10 @@
 
     @{
 
-        foreach (var produto in Model)
+        foreach (var produto in Model.Produtos)
         {
 
-            <div class="col-4">
-
-                <div class="img-thumbnail mb-2">
-
-                    <img height="300" src="@produto.ImagemProduto" class="img-rounded" />
-
-                    <div class="caption">
-
-                        <h2>@produto.DescricaoCurta</h2>
-
-                        <p>@produto.DescricaoDetalhada</p>
-
-                        <p>@produto.Preco.ToString("C")</p>
-
-                        @*<p>
-
-                                <a asp-controller="Produto" asp-action="Index" asp-route-categoriaId="@Model.CategoriaId" class="btn btn-info text-white">@Model.DescricaoCurta</a>
-
-                            </p>*@
-
-                        @*<h3 class="pull-righ btn-info">@Model.Nome</h3>*@
-
-                        @*<p>@Model.Descricao</p>*@
-
-                        <div class="addToCart text-right">
-
-                            <p class="button">
-
-                                <a class="btn btn-danger" id="cartButton" asp-route-produtoId="@produto.ProdutoId">Adicionar ao Carrinho</a>
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-            </div>
+            <partial name="ProdutoPartialView" for="@produto"/>
 
         }
 

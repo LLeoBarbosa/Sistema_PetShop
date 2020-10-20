@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Sistema_PetShop.ViewModels
 {
-    public class CategoriaViewModel
+    public class CarrinhoCompraViewModel
     {
-        public IEnumerable<Categoria> Categoria { get; set; }
-
-        public string CategoriaAtual { get; set; }
-
+        public CarrinhoCompra carrinhoCompra { get; set; }
+                
+        public decimal TotalCarrinho { get; set; }
     }
 }

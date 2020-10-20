@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sistema_PetShop.Context;
+using Sistema_PetShop.Models;
 using Sistema_PetShop.Repositories.Implementation;
 using Sistema_PetShop.Repositories.Interfaces;
 
@@ -48,12 +49,20 @@ namespace Sistema_PetShop
             //**********************************************************************************************************************************************************
 
             //Registrando um serviço para as interfaces, fornecendo ao controlador uma instancia da classe de implementação da interface
-            //Transiente - o serviço é criado a cada solicitação.
+
+            //Transiente - o serviço é criado fornecendo um objeto, a cada solicitação.
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
 
+            //Singleton - o serviço é criado uma unica vez para todas as requisições (O mesmo objeto para todas as requisições)
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Scoped - O serviço cria o objeto para cada requisição (objeto por requisição, individual)
+            services.AddScoped(carrinhoCompra => CarrinhoCompra.ObterCarrinho(carrinhoCompra));
+
             //**********************************************************************************************************************************************************
             //**********************************************************************************************************************************************************
+            services.AddSession();
 
         }
 
@@ -74,8 +83,13 @@ namespace Sistema_PetShop
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
             app.UseCookiePolicy();
+
+            //Ativando a sessão - Session
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
