@@ -32,7 +32,6 @@ namespace Sistema_PetShop.Controllers
 
             ProdutoViewModel produtoViewModel = new ProdutoViewModel
             {
-
                 Produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId),
               
 

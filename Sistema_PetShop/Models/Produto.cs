@@ -10,6 +10,7 @@ namespace Sistema_PetShop.Models
     {
         
         [Key]
+        [Required]
         public int ProdutoId { get; set; }
 
         [StringLength(50)]
@@ -36,6 +37,8 @@ namespace Sistema_PetShop.Models
         public int CategoriaId { get; set; }
 
         public Categoria Categoria { get; set; }
+
+        public List<IntercProdutoNota> ItensProdutoNotas { get; set; }              
 
 
 

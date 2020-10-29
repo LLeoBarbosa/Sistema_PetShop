@@ -14,6 +14,26 @@
     <Compile Remove="Migrations\20201010153254_including_Models_Produto_Categorias.Designer.cs" />
     <Compile Remove="Migrations\20201010153528_including_Models_Produto_Categorias.cs" />
     <Compile Remove="Migrations\20201010153528_including_Models_Produto_Categorias.Designer.cs" />
+    <Compile Remove="Migrations\20201028162935_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028162935_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028170953_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028170953_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028180849_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028180849_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028200135_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028200135_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028200826_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028200826_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028203812_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028203812_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028205939_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028205939_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028220349_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028220349_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028220913_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028220913_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201028221308_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
+    <Compile Remove="Migrations\20201028221308_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
   </ItemGroup>
 
 

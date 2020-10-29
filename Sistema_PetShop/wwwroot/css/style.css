@@ -1,0 +1,55 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.row {
+    margin: 0;
+}
+
+header {
+    background-color: #FA8072;
+}
+
+.container {
+    padding: 30px;
+}
+
+#cabecalho {
+    background-color: #FA8072;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+
+    .navbar-brand:hover {
+        color: #ffffff;
+    }
+
+#navbar-links a {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.rodape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}

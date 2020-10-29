@@ -1,7 +1,7 @@
 ﻿
 @model Produto
 
-<div class="container">
+@*<div class="container">
 
     <div class="row">
 
@@ -30,8 +30,8 @@
                     <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinho" asp-route-produtoId="@Model.ProdutoId">
 
                         @*Add @Model.DescricaoCurta to Cart*@
-                        Adicionar ao Carrinho
-                    </a>
+                       @* Adicionar ao Carrinho*@
+                    @*</a>
 
                 </p>
 
@@ -40,5 +40,33 @@
         </div>
 
     </div>
+
+</div>*@
+
+<div class="container corpo">
+
+    
+        <div class="card">
+          
+
+            <div class="card-body text-center">
+
+                <img src="@Model.ImagemProduto" class="img-fluid" alt="" />
+
+
+                <h4 class="card-title text-justify">@Model.DescricaoCurta</h4>
+
+                <p class="card-text text-justify">@Model.DescricaoDetalhada</p>
+
+              
+                <a asp-controller="Home" asp-action="Index" class="btn btn-success pull-left">Ver todos os produtos</a>
+
+                <a asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinho" asp-route-produtoId="@Model.ProdutoId" class="btn btn-info pull-left ml-2">Adicionar ao carrinho</a>
+
+            </div>
+
+        </div>
+
+    
 
 </div>
