@@ -25,7 +25,7 @@ namespace Sistema_PetShop.Controllers
         public IActionResult Index()
         {
 
-            ViewData["Produto"] = "Aqui sera exibido todos os produtos";
+           // ViewData["Produto"] = "Aqui sera exibido todos os produtos";
 
             ProdutoViewModel produtoViewModel = new ProdutoViewModel
             {

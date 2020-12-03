@@ -8,40 +8,37 @@ using System.Threading.Tasks;
 namespace Sistema_PetShop.Models
 {
 
-    [Table("IntercProdutoNota")]
-    public class IntercProdutoNota
+    [Table("Pagamentos_Pedidos")]
+    public class IntercPagamentoPedido
     {
 
         [Key]
         //[ForeignKey("NumeroNota")]
-        //[Column(Order = 1)]
-        public int NumeroNota { get; set; }
+        public int NumeroPedido { get; set; }
 
 
         [Key]
         //[ForeignKey("DataVenda")]
-        //[Column(Order = 2)]
         public DateTime DataVenda { get; set; }
 
-        public NotaFiscal NotaFiscal { get; set; }
+        public Pedido Pedidos { get; set; }
 
         //***********************************************
         //***********************************************
-
+        
         [Key]
-        [ForeignKey("ProdutoId")]
-        public int ProdutoId { get; set; }  
+        [ForeignKey("TipoPagamentoId")]
+        public int TipoPagamentoId { get; set; }
 
-        public Produto Produto { get; set; }
-
-        //***********************************************
-        //***********************************************
+        public TipoPagamento TipoPagamento { get; set; }
 
 
         [Required]
-        public int QTDVendida { get; set; }
+        public decimal ValorPago { get; set; }
 
-       
+        public string NumeroTransacao { get; set; }
+
+
 
 
     }

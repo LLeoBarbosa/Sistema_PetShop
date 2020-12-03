@@ -18,6 +18,10 @@ namespace Sistema_PetShop.Models
 
         public List<ItensCarrinhoCompra> ItensCarrinhoCompras { get; set; }
 
+        public CarrinhoCompra()
+        {
+
+        }
 
         public CarrinhoCompra(AplicacaoDbContext aplicacaoDbContext)
         {
@@ -25,7 +29,7 @@ namespace Sistema_PetShop.Models
         }
         //***********************************************************************************************************************************************************
         //***********************************************************************************************************************************************************
-
+        //Criando a sessão
         public static CarrinhoCompra ObterCarrinho(IServiceProvider services)
         {
            

@@ -26,7 +26,7 @@ namespace Sistema_PetShop.Models
 
         public decimal ValorMinimo { get; set; }
 
-        public List<IntercPagamentoNota> PagamentoNotas { get; set; }
+        public List<IntercPagamentoPedido> PagamentoPedidos { get; set; }
 
 
 

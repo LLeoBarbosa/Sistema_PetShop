@@ -23,23 +23,41 @@ namespace Sistema_PetShop.Controllers
         //*******************************************************************************************************
         //*******************************************************************************************************
 
-        public IActionResult Index(int categoriaId)
+        public IActionResult Index(int? categoriaId, string tipoAnimal)
         {
 
-            //var produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId);
-
-            ViewData["Produto"] = _categoriaRepository.Categorias.Where(c => c.CategoriaId == categoriaId).First().Nome.ToString();
-
-            ProdutoViewModel produtoViewModel = new ProdutoViewModel
+            if (categoriaId != null)
             {
-                Produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId),
-              
+                ViewData["Produto"] = _categoriaRepository.Categorias.Where(c => c.CategoriaId == categoriaId).First().Nome.ToString();
+
+                ProdutoViewModel produtoViewModel = new ProdutoViewModel
+                {
+                    Produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId),
+                };
+
+                return View(produtoViewModel);
+            }
+
+            ProdutoViewModel produtoVModel = new ProdutoViewModel()
+            {
+                Produtos = _iprodutoRepository.Produtos.Where(p => p.EspAnimal == TempData["tipoAnimal"].ToString()).ToList(),
 
             };
 
-            return View(produtoViewModel);
+            //produtoViewModel.Produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId);
 
+
+            return View(produtoVModel);
         }
+        //*******************************************************************************************************
+        //*******************************************************************************************************
+
+
+        //public IActionResult Index(ProdutoViewModel animal)
+        //{
+        //    //var produtos = _iprodutoRepository.Produtos.Where(p => p.CategoriaId == categoriaId);               
+        //    return View(animal);
+        //}
 
 
         //*******************************************************************************************************
@@ -66,6 +84,44 @@ namespace Sistema_PetShop.Controllers
 
         }
 
+        //*******************************************************************************************************
+        //*******************************************************************************************************
+
+        public IActionResult Buscar(string buscar)
+        {
+
+            //Verificar a busca de itens com letra minuscula
+
+            IEnumerable<Produto> produtos;
+
+            if (string.IsNullOrEmpty(buscar))
+            {
+                produtos = _iprodutoRepository.Produtos.OrderBy(p => p.ProdutoId);
+            }
+            else
+            {
+                produtos = _iprodutoRepository.Produtos.Where(p => p.DescricaoCurta.ToLower().Contains(buscar.ToLower()));
+            }
+
+            return View("~/Views/Produto/Index.cshtml", new ProdutoViewModel { Produtos = produtos });
+        }
+
+        //*******************************************************************************************************
+        //*******************************************************************************************************
+
+        public IActionResult BuscarItensPorAnimal(string tipoAnimal)
+        {
+
+            //ProdutoViewModel produtoViewModel = new ProdutoViewModel()
+            //{
+            //    Produtos = _iprodutoRepository.Produtos.Where(p => p.EspAnimal == tipoAnimal).ToList(),
+
+            //};
+
+            TempData["tipoAnimal"] = tipoAnimal;
+
+            return RedirectToAction("Index", "Produto", tipoAnimal);
+        }
 
 
     }

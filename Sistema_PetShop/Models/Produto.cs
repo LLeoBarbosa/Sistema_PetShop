@@ -8,7 +8,7 @@ namespace Sistema_PetShop.Models
 {
     public class Produto
     {
-        
+
         [Key]
         [Required]
         public int ProdutoId { get; set; }
@@ -23,22 +23,26 @@ namespace Sistema_PetShop.Models
 
         [StringLength(50)]
         public string Fabricante { get; set; }
-        
+
         [DataType(DataType.Date)]
         public DateTime Validade { get; set; }
 
-        [Range(0,9999.99)]
+        [Range(0, 9999.99)]
         public decimal Preco { get; set; }
 
         [StringLength(200)]
         public string ImagemProduto { get; set; }
 
-        
+        [Required]
+        [StringLength(15)]
+        public string EspAnimal { get; set; }
+
+
         public int CategoriaId { get; set; }
 
         public Categoria Categoria { get; set; }
 
-        public List<IntercProdutoNota> ItensProdutoNotas { get; set; }              
+        public List<IntercProdutoPedido> ItensProdutoPedidos { get; set; }
 
 
 

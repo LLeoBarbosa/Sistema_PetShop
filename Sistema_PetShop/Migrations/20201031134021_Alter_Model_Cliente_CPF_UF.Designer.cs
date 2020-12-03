@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sistema_PetShop.Context;
 
 namespace Sistema_PetShop.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    partial class AplicacaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201031134021_Alter_Model_Cliente_CPF_UF")]
+    partial class Alter_Model_Cliente_CPF_UF
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -153,9 +155,6 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<DateTime>("DataVenda");
 
-                    b.Property<string>("CarrinhoCompraId")
-                        .HasMaxLength(100);
-
                     b.Property<int>("ClienteId");
 
                     b.Property<string>("Detalhes")
@@ -184,10 +183,6 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<string>("DescricaoDetalhada")
                         .HasMaxLength(200);
-
-                    b.Property<string>("EspAnimal")
-                        .IsRequired()
-                        .HasMaxLength(15);
 
                     b.Property<string>("Fabricante")
                         .HasMaxLength(50);
@@ -230,32 +225,6 @@ namespace Sistema_PetShop.Migrations
                     b.HasKey("TipoPagamentoId");
 
                     b.ToTable("TiposPagamentos");
-                });
-
-            modelBuilder.Entity("Sistema_PetShop.Models.Usuario", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(8);
-
-                    b.Property<string>("Role");
-
-                    b.Property<string>("Status");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoPedido", b =>

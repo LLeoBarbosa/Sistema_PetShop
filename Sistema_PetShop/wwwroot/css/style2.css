@@ -70,3 +70,41 @@ body {
         padding-top: 10px;
         padding-left: 15px;
     }
+
+
+
+.wrap h2 {
+    text-align: center;
+}
+
+.wrap {
+    width: 415px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 150px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+    .wrap input {
+        width: 400px;
+        height: 35px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid silver;
+        padding: 5px;
+        font-size: medium;
+    }
+
+    /*.wrap .btn-button {
+        padding: 10px;
+        width: 413px;
+        height: 40px;
+        color: #fff;
+        border-radius: 3px;
+        border: 0;
+        font-size: 18px;
+        background-color: #3498db;
+    }*/

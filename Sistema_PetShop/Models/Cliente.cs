@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Sistema_PetShop.Models
         [Required(ErrorMessage = "O CPF é requerido!")]
         [Display(Name = "CPF")]
         [StringLength(11)]
-        public int Cpf { get; set; }
+        public string Cpf { get; set; }
 
 
         [Required(ErrorMessage = "O Endereço é requerido!")]
@@ -40,8 +41,8 @@ namespace Sistema_PetShop.Models
         [StringLength(25)]
         public string Cidade { get; set; }
 
-               
-        public char Uf { get; set; }
+        [StringLength(30)]      
+        public string Uf { get; set; }
 
 
         [Required(ErrorMessage = "Informe o telefone Fixo")]
@@ -64,7 +65,8 @@ namespace Sistema_PetShop.Models
         [RegularExpression(@"^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$", ErrorMessage = "Informe um email válido")]
         public string Email { get; set; }
 
-        public List<NotaFiscal> NotasFicais { get; set; }
+        public List<Pedido> Pedidos { get; set; }
 
+ 
     }
 }

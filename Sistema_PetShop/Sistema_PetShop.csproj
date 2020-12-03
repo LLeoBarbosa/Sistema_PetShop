@@ -34,15 +34,38 @@
     <Compile Remove="Migrations\20201028220913_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
     <Compile Remove="Migrations\20201028221308_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.cs" />
     <Compile Remove="Migrations\20201028221308_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20201030191700_Including_Pedido_Intercecs_Cliente_TipoPagamento.cs" />
+    <Compile Remove="Migrations\20201030191700_Including_Pedido_Intercecs_Cliente_TipoPagamento.Designer.cs" />
+    <Compile Remove="Migrations\20201030192036_Including_Pedido_Intercecs_Cliente_TipoPagamento.cs" />
+    <Compile Remove="Migrations\20201030192036_Including_Pedido_Intercecs_Cliente_TipoPagamento.Designer.cs" />
+    <Compile Remove="Migrations\20201030193241_Including_Pedido_Intercecs_Cliente_TipoPagamento.cs" />
+    <Compile Remove="Migrations\20201030193241_Including_Pedido_Intercecs_Cliente_TipoPagamento.Designer.cs" />
+    <Compile Remove="Migrations\20201030193903_Including_Pedido_Intercecs_Cliente_TipoPagamento.cs" />
+    <Compile Remove="Migrations\20201030193903_Including_Pedido_Intercecs_Cliente_TipoPagamento.Designer.cs" />
+    <Compile Remove="Migrations\20201105222947_teste.cs" />
+    <Compile Remove="Migrations\20201105222947_teste.Designer.cs" />
+    <Compile Remove="Migrations\20201105223547_Add_Property_Clientes.cs" />
+    <Compile Remove="Migrations\20201105223547_Add_Property_Clientes.Designer.cs" />
+    <Compile Remove="Migrations\20201125190456_Add_Usuario.cs" />
+    <Compile Remove="Migrations\20201125190456_Add_Usuario.Designer.cs" />
+    <Compile Remove="Migrations\20201125190637_Add_Model_Usuario.cs" />
+    <Compile Remove="Migrations\20201125190637_Add_Model_Usuario.Designer.cs" />
+    <Compile Remove="Migrations\20201125190908_Add_Model_Usuario.cs" />
+    <Compile Remove="Migrations\20201125190908_Add_Model_Usuario.Designer.cs" />
+    <Compile Remove="Migrations\20201125191238_Add_Model_Usuario.cs" />
+    <Compile Remove="Migrations\20201125191238_Add_Model_Usuario.Designer.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="Lexim.MercadoPago.Sdk" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1">
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

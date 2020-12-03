@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Sistema_PetShop.Repositories.Interfaces
 {
-    public interface ICategoriaRepository
+    public interface IUsuarioRepository
     {
-        IEnumerable<Categoria> Categorias { get; }
+        void RegistrarUsuario(Usuario usuario);
+
+        Usuario Login(Usuario usuario);
+
+        void Logout();
+
     }
 }

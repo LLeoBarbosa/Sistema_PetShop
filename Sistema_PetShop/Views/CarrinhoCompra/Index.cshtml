@@ -7,7 +7,10 @@
 
     if (Model.carrinhoCompra.ItensCarrinhoCompras.Count() == 0)
     {
-        <p>Não existem itens no carrinho.</p>
+        
+        <div class="alert alert-danger pt-3 mt-3" role="alert">
+            <p>Não existem itens no carrinho.</p>
+        </div>
     }
     else
     {
@@ -38,7 +41,7 @@
                         <tr>
                             <td class="text-center">@item.Quantidade</td>
                             <td class="text-left">@item.Produto.DescricaoCurta</td>
-                            <td class="text-right">@item.Produto.Preco.ToString()</td>
+                            <td class="text-right">@item.Produto.Preco.ToString("c")</td>
                             <td class="text-right">@((item.Quantidade * item.Produto.Preco).ToString("c")) </td>
 
                             <td class="text-center"> <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinho" asp-route-ProdutoId="@item.Produto.ProdutoId"><img src="~/images/delete.png" /></a></td>
@@ -69,7 +72,7 @@
 
                 <div class="btn-group">
 
-                    <a class="btn btn-success" asp-controller="" asp-action="">Encerrar Pedido</a>
+                    <a class="btn btn-success" asp-controller="Cliente" asp-action="InserirCliente">CheckOut</a>
 
                     @*<a class="btn-group">
 
@@ -80,7 +83,7 @@
                             @await Component.InvokeAsync("MenuDeCategoria")
 
                         </a>*@
-                        
+
 
                 </div>
 

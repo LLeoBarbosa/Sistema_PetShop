@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sistema_PetShop.Context;
 
 namespace Sistema_PetShop.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    partial class AplicacaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201030210244_Including_Pedido_Intercecs_Cliente_TipoPagamento")]
+    partial class Including_Pedido_Intercecs_Cliente_TipoPagamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -52,8 +54,7 @@ namespace Sistema_PetShop.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.Property<string>("Cpf")
-                        .IsRequired()
+                    b.Property<int>("Cpf")
                         .HasMaxLength(11);
 
                     b.Property<string>("Email")
@@ -78,7 +79,8 @@ namespace Sistema_PetShop.Migrations
                     b.Property<string>("TelMovel2");
 
                     b.Property<string>("Uf")
-                        .HasMaxLength(30);
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
 
                     b.HasKey("ClienteId");
 
@@ -153,9 +155,6 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<DateTime>("DataVenda");
 
-                    b.Property<string>("CarrinhoCompraId")
-                        .HasMaxLength(100);
-
                     b.Property<int>("ClienteId");
 
                     b.Property<string>("Detalhes")
@@ -184,10 +183,6 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<string>("DescricaoDetalhada")
                         .HasMaxLength(200);
-
-                    b.Property<string>("EspAnimal")
-                        .IsRequired()
-                        .HasMaxLength(15);
 
                     b.Property<string>("Fabricante")
                         .HasMaxLength(50);
@@ -232,40 +227,14 @@ namespace Sistema_PetShop.Migrations
                     b.ToTable("TiposPagamentos");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.Usuario", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(8);
-
-                    b.Property<string>("Role");
-
-                    b.Property<string>("Status");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Usuarios");
-                });
-
             modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoPedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.TipoPagamento", "TipoPagamento")
-                        .WithMany("PagamentoPedidos")
+                        .WithMany("PagamentoNotas")
                         .HasForeignKey("TipoPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Sistema_PetShop.Models.Pedido", "Pedidos")
+                    b.HasOne("Sistema_PetShop.Models.Pedido", "NotaFiscal")
                         .WithMany("PagamentoNotas")
                         .HasForeignKey("NumeroPedido", "DataVenda")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -274,11 +243,11 @@ namespace Sistema_PetShop.Migrations
             modelBuilder.Entity("Sistema_PetShop.Models.IntercProdutoPedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.Produto", "Produto")
-                        .WithMany("ItensProdutoPedidos")
+                        .WithMany("ItensProdutoNotas")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Sistema_PetShop.Models.Pedido", "Pedidos")
+                    b.HasOne("Sistema_PetShop.Models.Pedido", "NotaFiscal")
                         .WithMany("ItensProdutoNotas")
                         .HasForeignKey("NumeroPedido", "DataVenda")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -294,7 +263,7 @@ namespace Sistema_PetShop.Migrations
             modelBuilder.Entity("Sistema_PetShop.Models.Pedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.Cliente", "Cliente")
-                        .WithMany("Pedidos")
+                        .WithMany("NotasFicais")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

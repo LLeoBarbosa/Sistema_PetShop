@@ -10,8 +10,8 @@ using Sistema_PetShop.Context;
 namespace Sistema_PetShop.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    [Migration("20201028235500_Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente")]
-    partial class Add_NotaFiscal_TipoPagamento_IntercsNotasETipoPagamento_Cliente
+    [Migration("20201105202858_field_CarrinhoCompraId_Pedidos")]
+    partial class field_CarrinhoCompraId_Pedidos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,8 @@ namespace Sistema_PetShop.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.Property<int>("Cpf")
+                    b.Property<string>("Cpf")
+                        .IsRequired()
                         .HasMaxLength(11);
 
                     b.Property<string>("Email")
@@ -79,36 +80,37 @@ namespace Sistema_PetShop.Migrations
                     b.Property<string>("TelMovel2");
 
                     b.Property<string>("Uf")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
+                        .HasMaxLength(30);
 
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoNota", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoPedido", b =>
                 {
-                    b.Property<int>("NumeroNota");
+                    b.Property<int>("NumeroPedido");
 
                     b.Property<DateTime>("DataVenda");
 
                     b.Property<int>("TipoPagamentoId");
 
+                    b.Property<string>("NumeroTransacao");
+
                     b.Property<decimal>("ValorPago");
 
-                    b.HasKey("NumeroNota", "DataVenda", "TipoPagamentoId");
+                    b.HasKey("NumeroPedido", "DataVenda", "TipoPagamentoId");
 
-                    b.HasAlternateKey("DataVenda", "NumeroNota", "TipoPagamentoId");
+                    b.HasAlternateKey("DataVenda", "NumeroPedido", "TipoPagamentoId");
 
                     b.HasIndex("TipoPagamentoId");
 
-                    b.ToTable("IntercPagamentoNota");
+                    b.ToTable("Pagamentos_Pedidos");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.IntercProdutoNota", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.IntercProdutoPedido", b =>
                 {
-                    b.Property<int>("NumeroNota");
+                    b.Property<int>("NumeroPedido");
 
                     b.Property<DateTime>("DataVenda");
 
@@ -116,13 +118,15 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<int>("QTDVendida");
 
-                    b.HasKey("NumeroNota", "DataVenda", "ProdutoId");
+                    b.Property<decimal>("Valor");
 
-                    b.HasAlternateKey("DataVenda", "NumeroNota", "ProdutoId");
+                    b.HasKey("NumeroPedido", "DataVenda", "ProdutoId");
+
+                    b.HasAlternateKey("DataVenda", "NumeroPedido", "ProdutoId");
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("IntercProdutoNota");
+                    b.ToTable("Produtos_Pedidos");
                 });
 
             modelBuilder.Entity("Sistema_PetShop.Models.ItensCarrinhoCompra", b =>
@@ -145,25 +149,28 @@ namespace Sistema_PetShop.Migrations
                     b.ToTable("ItensCarrinhoCompras");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.NotaFiscal", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.Pedido", b =>
                 {
-                    b.Property<int>("NumeroNota");
+                    b.Property<int>("NumeroPedido");
 
                     b.Property<DateTime>("DataVenda");
 
-                    b.Property<int>("CLienteId");
+                    b.Property<string>("CarrinhoCompraId")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("ClienteId");
 
                     b.Property<string>("Detalhes")
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.HasKey("NumeroNota", "DataVenda");
+                    b.HasKey("NumeroPedido", "DataVenda");
 
-                    b.HasAlternateKey("DataVenda", "NumeroNota");
+                    b.HasAlternateKey("DataVenda", "NumeroPedido");
 
-                    b.HasIndex("CLienteId");
+                    b.HasIndex("ClienteId");
 
-                    b.ToTable("NotasFiscais");
+                    b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("Sistema_PetShop.Models.Produto", b =>
@@ -223,29 +230,29 @@ namespace Sistema_PetShop.Migrations
                     b.ToTable("TiposPagamentos");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoNota", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.IntercPagamentoPedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.TipoPagamento", "TipoPagamento")
-                        .WithMany("PagamentoNotas")
+                        .WithMany("PagamentoPedidos")
                         .HasForeignKey("TipoPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Sistema_PetShop.Models.NotaFiscal", "NotaFiscal")
+                    b.HasOne("Sistema_PetShop.Models.Pedido", "Pedidos")
                         .WithMany("PagamentoNotas")
-                        .HasForeignKey("NumeroNota", "DataVenda")
+                        .HasForeignKey("NumeroPedido", "DataVenda")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.IntercProdutoNota", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.IntercProdutoPedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.Produto", "Produto")
-                        .WithMany("ItensProdutoNotas")
+                        .WithMany("ItensProdutoPedidos")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Sistema_PetShop.Models.NotaFiscal", "NotaFiscal")
+                    b.HasOne("Sistema_PetShop.Models.Pedido", "Pedidos")
                         .WithMany("ItensProdutoNotas")
-                        .HasForeignKey("NumeroNota", "DataVenda")
+                        .HasForeignKey("NumeroPedido", "DataVenda")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -256,11 +263,11 @@ namespace Sistema_PetShop.Migrations
                         .HasForeignKey("ProdutoId");
                 });
 
-            modelBuilder.Entity("Sistema_PetShop.Models.NotaFiscal", b =>
+            modelBuilder.Entity("Sistema_PetShop.Models.Pedido", b =>
                 {
                     b.HasOne("Sistema_PetShop.Models.Cliente", "Cliente")
-                        .WithMany("NotasFicais")
-                        .HasForeignKey("CLienteId")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

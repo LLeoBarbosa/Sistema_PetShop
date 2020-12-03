@@ -1,0 +1,106 @@
+﻿
+@model ResumoViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container bg-light">
+
+    <form target="pagseguro" method="post" action="https://sandbox.pagseguro.uol.com.br/v2/checkout?email=itbl.financeiro@outlook.com.br&token=0E1DD9EDBAA8476197C1826DD230F70E">
+
+        @*Codificação do POST*@
+        <input type="hidden" name="encoding" value="UTF8" readonly="readonly" />
+
+        @*Email do vendedor*@
+        @*<input type="hidden" name="receiverEmail" value="itbl.financeiro@outlook.com.br" readonly="readonly" />
+
+        <input type="hidden" name="token-sandbox" value="0E1DD9EDBAA8476197C1826DD230F70E" readonly="readonly" />*@
+
+        @*Moeda*@
+        <input type="hidden" name="currency" value="BRL" readonly="readonly" />
+
+        @*<input type="hidden" name="bussines" value="itbl.financeiro@outlook.com.br" readonly="readonly" />*@
+
+        @*Identificação customizada - Id do cliente *@
+        @*<input type="hidden" name="reference" value="" readonly="readonly" />*@
+
+        @*******************************************************************************************@
+        @*INFORMAÇÔES DO CLIENTE*@
+
+        @*Email*@
+        <input type="text" name="senderEmail" value="@Model._Cliente.Email" />
+
+        @*Nome Completo*@
+        <input type="text" name="senderName" value="@Model._Cliente.Nome" />
+
+        @*Endereço*@
+        <input type="text" name="shippingAddressStreet" value="@Model._Cliente.Endereco" />
+
+        @*@*Número*@
+        @*<input type="hidden" name="shippingAddressNumber" value="" />*@
+
+        @*Complemento*@
+        @*<input type="hidden" name="shippingAddressComplement" value="" />*@
+
+        @*Bairro*@
+        @*<input type="hidden" name="shippingAddressDistrict" value="" />*@
+
+        @*Cidade*@
+        <input type="text" name="shippingAddressCity" value="@Model._Cliente.Cidade" />
+
+        @*Estado*@
+        <input type="text" name="shippingAddressState" value="@Model._Cliente.Uf" />
+
+        @*CEP*@
+        @*<input type="text" name="shippingAddressPostalCode" value="" />*@
+
+        @*País*@
+        <input type="hidden" name="shippingAddressCountry" value="BRA" readonly="readonly" />
+        
+
+        @*******************************************************************************************@
+        @*INFORMAÇÔES DO PRODUTO*@
+
+
+        @{
+            foreach (var item in Model._IntercProdutoPedido)
+            {
+
+                @*ID do Produto*@
+                @*<input type="hidden" name="itemIdx" value="" readonly="readonly" />*@
+
+                @*Titulo do Produto*@
+                <input type="hidden" name="itemDescriptionx" value="@item.Produto.DescricaoCurta" readonly="readonly" />
+
+                @*Quantidade de Itens do Produto*@
+                <input type="hidden" name="itemQuantityx" value="@item.QTDVendida" readonly="readonly" />
+
+                @*Preço do Total do Produto*@
+                <input type="hidden" name="itemAmountx" value="@item.Valor" readonly="readonly" />
+
+                @*Variáveis opcionais de para Produtos.
+                Habilitando
+                Frete: 1 = PAC / 2 = SEDEX / 3 = Valor por Item*@
+
+                @*<input type="hidden" name="shippingType" value="3" />*@
+
+                @*Frete do Produto*@
+                @*<input type="hidden" name="itemShippingCostx" value="" readonly="readonly" />*@
+
+                @*Imposto ou Taxa Adicional*@
+                @*<input type="hidden" name="extraAmount" value="" readonly="readonly" />*@
+
+
+            }
+        }
+               
+        <button type="submit" class="btn btn-success">Finalizar</button>
+
+    </form>
+
+
+</div>
+
+
+

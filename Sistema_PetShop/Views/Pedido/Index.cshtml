@@ -1,0 +1,106 @@
+﻿
+@model PedidoViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<div class="container">
+
+    <div class="container clearfix mt-3 mb-3">
+
+        <h3 class="float-left">Resumo da compra</h3>
+
+        <h3 class="float-right">Numero do Pedido: @ViewData["NumeroPedido"]@ViewData["DataVenda"]</h3>
+
+    </div>
+
+    @{
+        //DateTime data = Convert.ToDateTime(@ViewData["_DataVenda"]);
+
+        //string newData = data.Substring(0, 10).Replace("/", "");
+
+    }
+
+    <table class="table table-bordered">
+
+
+        <thead>
+
+            <tr>
+
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col" class="text-right" a>Preço</th>
+            </tr>
+
+        </thead>
+
+        @{
+
+            List<Produto> produtos = new List<Produto>();
+
+            foreach (var item in Model._IntercProdutoPedido)
+            {
+
+                <tbody>
+
+                    <tr>
+                        <td>@item.Produto.DescricaoCurta</td>
+                        <td>@item.QTDVendida</td>
+                        <td class="text-right">@item.Produto.Preco.ToString("c")</td>
+                    </tr>
+
+
+                </tbody>
+
+                produtos.Add(item.Produto);
+
+            }
+
+            <tr>
+                <td colspan="2" class="text-right">Total</td>
+                <td class="text-right">@Model.TotalPedido.ToString("c")</td>
+            </tr>
+
+        }
+
+
+    </table>
+
+   
+
+    @{
+        decimal total = Model.TotalPedido;
+
+        MercadoPago mercadoPago = new MercadoPago();
+
+        //var dados = mercadoPago.Pagamento(Convert.ToInt32(ViewData["NumeroPedido"]), ViewData["_DataVenda"].ToString());
+
+        var dados = mercadoPago.Pagamento(total);
+
+        }
+
+    <hr>
+    <p>Pague com:</p>
+
+    <a asp-controller="PayPal" asp-action="PagPayPal" asp-route-numpedido="@ViewData["NumeroPedido"]" asp-route-datavenda="@ViewData["_DataVenda"]" class="btn btn-primary">PayPal</a>
+
+    @*<a asp-controller="PagSeguro" asp-action="Index" asp-route-clienteId="@Model._Cliente.ClienteId" asp-route-numero="@ViewData["NumeroPedido"]" asp-route-dat="@Model._IntercProdutoPedido.Last().DataVenda" class="btn btn-primary">PagSeguro</a>*@
+    <a asp-controller="Service" asp-action="PagSeguro" asp-route-numpedido="@ViewData["NumeroPedido"]" asp-route-datavenda="@ViewData["_DataVenda"]" class="btn btn-success">PagSeguro</a>
+
+    <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js" data-button-label="Mercado Pago" data-preference-id="@dados.Id"></script>
+
+   
+
+
+
+
+
+
+
+
+
+</div>

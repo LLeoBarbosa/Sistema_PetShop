@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sistema_PetShop.Context;
 
 namespace Sistema_PetShop.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    partial class AplicacaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201125192049_Add_Model_Usuario")]
+    partial class Add_Model_Usuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,10 +186,6 @@ namespace Sistema_PetShop.Migrations
 
                     b.Property<string>("DescricaoDetalhada")
                         .HasMaxLength(200);
-
-                    b.Property<string>("EspAnimal")
-                        .IsRequired()
-                        .HasMaxLength(15);
 
                     b.Property<string>("Fabricante")
                         .HasMaxLength(50);

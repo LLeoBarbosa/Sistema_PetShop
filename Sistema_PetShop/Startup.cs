@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -47,12 +48,20 @@ namespace Sistema_PetShop
 
             //**********************************************************************************************************************************************************
             //**********************************************************************************************************************************************************
+            //Registrando um serviço para os tipos do Identity
+            //o metodo AddEntityFrameworkStores adiciona a implementação da classe de sessão com o banco (Context), armazenando os tipos do Identity
+            // o método  AddDefaultTokenProviders inclui para o identity recursos de fornecimento de tokens par auxiliar na troca de senha, email...
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AplicacaoDbContext>().AddDefaultTokenProviders();
 
             //Registrando um serviço para as interfaces, fornecendo ao controlador uma instancia da classe de implementação da interface
 
             //Transiente - o serviço é criado fornecendo um objeto, a cada solicitação.
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
 
             //Singleton - o serviço é criado uma unica vez para todas as requisições (O mesmo objeto para todas as requisições)
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -62,6 +71,7 @@ namespace Sistema_PetShop
 
             //**********************************************************************************************************************************************************
             //**********************************************************************************************************************************************************
+            services.AddMemoryCache();
             services.AddSession();
 
         }
@@ -91,12 +101,21 @@ namespace Sistema_PetShop
             //Ativando a sessão - Session
             app.UseSession();
 
+            //Ativando a Autenticação - adiciona a autenticação ao Pipeline da solicitação Identity
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                
+
             });
+
+            
+
         }
     }
 }

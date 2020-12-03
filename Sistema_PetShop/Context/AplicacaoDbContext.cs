@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Sistema_PetShop.Models;
 using System;
 using System.Collections.Generic;
@@ -9,8 +11,12 @@ namespace Sistema_PetShop.Context
 {
     public class AplicacaoDbContext : DbContext
     {
+        public AplicacaoDbContext()
+        {
 
+        }
         public AplicacaoDbContext(DbContextOptions<AplicacaoDbContext> options) : base(options) { }
+
 
         public DbSet<Produto> Produtos { get; set; }
 
@@ -22,59 +28,64 @@ namespace Sistema_PetShop.Context
 
         public DbSet<Cliente> Clientes { get; set; }
 
-        public DbSet<NotaFiscal> NotasFiscais { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         public DbSet<TipoPagamento> TiposPagamentos { get; set; }
 
-        public DbSet<IntercPagamentoNota> Pagamentos_Notas { get; set; }
+        public DbSet<IntercPagamentoPedido> Pagamento_Pedidos { get; set; }
 
-        public DbSet<IntercProdutoNota> Produtos_Notas { get; set; }
+        public DbSet<IntercProdutoPedido> Produtos_Pedidos { get; set; }
 
+        //******************************************************************************************
+
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        //******************************************************************************************
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<NotaFiscal>(nf => nf.HasKey(chave => new
+            modelBuilder.Entity<Pedido>(nf => nf.HasKey(chave => new
             {
-                chave.NumeroNota,
+                chave.NumeroPedido,
                 chave.DataVenda
             }));
 
             //*******************************************************************
 
-            modelBuilder.Entity<IntercProdutoNota>(ipn => ipn.HasKey(chave => new
+            modelBuilder.Entity<IntercProdutoPedido>(ipn => ipn.HasKey(chave => new
             {
-                chave.NumeroNota,
+                chave.NumeroPedido,
                 chave.DataVenda,
                 chave.ProdutoId
    
             }));
 
-            modelBuilder.Entity<IntercProdutoNota>()
-                .HasOne(nf => nf.NotaFiscal)
+            modelBuilder.Entity<IntercProdutoPedido>()
+                .HasOne(nf => nf.Pedidos)
                 .WithMany(ipn => ipn.ItensProdutoNotas)
                 .HasForeignKey(ipn => new
                 {
-                    ipn.NumeroNota,
+                    ipn.NumeroPedido,
                     ipn.DataVenda,
                     
                 });
 
             //*******************************************************************
 
-            modelBuilder.Entity<IntercPagamentoNota>(np => np.HasKey(chave => new
+            modelBuilder.Entity<IntercPagamentoPedido>(np => np.HasKey(chave => new
             {
-                chave.NumeroNota,
+                chave.NumeroPedido,
                 chave.DataVenda,
                 chave.TipoPagamentoId
             }));
 
-            modelBuilder.Entity<IntercPagamentoNota>()
-               .HasOne(nf => nf.NotaFiscal)
+            modelBuilder.Entity<IntercPagamentoPedido>()
+               .HasOne(nf => nf.Pedidos)
                .WithMany(ipn => ipn.PagamentoNotas)
                .HasForeignKey(ipn => new
                {
-                   ipn.NumeroNota,
+                   ipn.NumeroPedido,
                    ipn.DataVenda,
                    
                });
